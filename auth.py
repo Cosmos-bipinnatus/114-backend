@@ -1,10 +1,10 @@
-from fastapi import FASTAPI, Depends, HTTPException, status, Response, Cookie
+from fastapi import FastAPI, Depends, HTTPException, status, Response, Cookie
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from typing import Optional
 
-app=FASTAPI()
+app = FastAPI()
 
 fake_user_db ={
     "alice": {"username":"alice","password":"secret123"}

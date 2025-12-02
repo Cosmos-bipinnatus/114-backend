@@ -8,7 +8,8 @@ class Item(BaseModel):
     description: str | None = Field(
         default = None, title="The description of the item", max_length=300
     )
-    price: float = Field(gt=0,decription = "The price must be greater than zero")
+    price: float = Field(gt=0,json_schema_extra="The price must be greater than zero")
+    #price: float = Field(gt=0,decription = "The price must be greater than zero")
     tax: Union[float, None] = None
     tags: list[str] = []
 
