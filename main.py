@@ -1,19 +1,18 @@
 from typing import Annotated, List, Union
-
+import os
+import google_auth_oauthlib
 from fastapi import Body, Cookie, FastAPI, Form, Path
 from pydantic import BaseModel, Field
 
-class Item(BaseModel):
-    name: str
-    description: str | None = Field(
-        default = None, title="The description of the item", max_length=300
-    )
-    price: float = Field(gt=0,decription = "The price must be greater than zero")
-    tax: Union[float, None] = None
-    tags: list[str] = []
+class TokenRequest(BaseModel):
+    id_token:str
 
 app = FastAPI()
+"""
+@app.post("/atuh/google")
+async def google_auth(request:TokenRequest):
 
+"""
 
 @app.post("/login")
 async def login(
@@ -62,13 +61,13 @@ async def create_item(item: Item):
     return item_dict
 
     
-"""
+
 
 @app.post("/items/")
 async def create_item(item: Item) -> Item:
     return Item
 
-"""
+
 
 @app.put("/items/{item_id}")
 async def update_item(
@@ -83,9 +82,10 @@ async def update_item(
         results.update({"item": item})
     return results
 
-"""
+
 
 @app.put("/items/{item_id}")
 async def update_item(item_id: int, item: Annotated[Item, Body(embed=True)]):
     results = {"item_id": item_id, "item": item}
     return results
+"""
